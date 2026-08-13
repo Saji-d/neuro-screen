@@ -1,0 +1,383 @@
+{
+  "version": 2,
+  "source": "generated",
+  "features": [
+    {
+      "key": "age",
+      "label": "Age",
+      "icon": "🎂",
+      "category": "Demographics",
+      "description": "Your current age in years.",
+      "input_type": "number",
+      "min": 17,
+      "max": 28,
+      "default": 23,
+      "step": 1,
+      "recommended": "Dataset covers ages 18-28",
+      "model_column": "What is your age?"
+    },
+    {
+      "key": "gender",
+      "label": "Gender",
+      "icon": "👤",
+      "category": "Demographics",
+      "description": "The gender you identify with.",
+      "input_type": "select",
+      "options": [
+        "Female",
+        "Male"
+      ],
+      "default": "Male",
+      "recommended": "n/a",
+      "model_column": "What is your gender?"
+    },
+    {
+      "key": "university",
+      "label": "University",
+      "icon": "🏛️",
+      "category": "Demographics",
+      "description": "The university you are currently studying at.",
+      "input_type": "select",
+      "options": [
+        "AIUB",
+        "AUST",
+        "Asian University for Women",
+        "BAU",
+        "BRAC University",
+        "BUET",
+        "BUP",
+        "Begum Rokeya University",
+        "Comilla University",
+        "DIU",
+        "East West University",
+        "Green University",
+        "IIUC Chittagong",
+        "IUT",
+        "Independent University, Bangladesh (IUB)",
+        "Jagannath University",
+        "Jahangirnagar University",
+        "Khulna University",
+        "Leading University",
+        "MIST",
+        "Metropolitan University",
+        "Noakhali STU",
+        "North South University (NSU)",
+        "SUST",
+        "Stamford University",
+        "Sylhet Agricultural University",
+        "UIU",
+        "University of Asia Pacific (UAP)",
+        "University of Chittagong",
+        "University of Dhaka",
+        "University of Rajshahi"
+      ],
+      "default": "AIUB",
+      "recommended": "n/a",
+      "model_column": "What is your University name?"
+    },
+    {
+      "key": "academic_year",
+      "label": "Academic Year",
+      "icon": "🎓",
+      "category": "Demographics",
+      "description": "Your current year of study at university.",
+      "input_type": "select",
+      "options": [
+        "1st Year",
+        "2nd Year",
+        "3rd Year",
+        "4th Year",
+        "Graduated"
+      ],
+      "default": "3rd Year",
+      "recommended": "n/a",
+      "model_column": "Your current year of study?"
+    },
+    {
+      "key": "sleep_hours",
+      "label": "Average Sleep Hours",
+      "icon": "😴",
+      "category": "Sleep & Insomnia",
+      "description": "How many hours of actual sleep you get on a typical night.",
+      "input_type": "select",
+      "options": [
+        "Less than 5 hours",
+        "5-6 hours",
+        "6-7 hours",
+        "7-8 hours",
+        "More than 8 hours"
+      ],
+      "default": "6-7 hours",
+      "recommended": "7-9 hours for young adults",
+      "model_column": "On average, how many hours of actual sleep do you get per night?"
+    },
+    {
+      "key": "sleep_quality",
+      "label": "Overall Sleep Quality",
+      "icon": "🌙",
+      "category": "Sleep & Insomnia",
+      "description": "How well you feel you sleep overall.",
+      "input_type": "select",
+      "options": [
+        "1 (Very Poor)",
+        "2 (Poor)",
+        "3 (Average)",
+        "4 (Good)",
+        "5 (Excellent)"
+      ],
+      "default": "3 (Average)",
+      "recommended": "4-5 (Good to Excellent)",
+      "model_column": "How would you rate your overall sleep quality?"
+    },
+    {
+      "key": "awakenings",
+      "label": "Nightly Awakenings",
+      "icon": "🌃",
+      "category": "Sleep & Insomnia",
+      "description": "How often you wake up in the middle of the night.",
+      "input_type": "select",
+      "options": [
+        "Never",
+        "Sometimes",
+        "Always"
+      ],
+      "default": "Sometimes",
+      "recommended": "Never",
+      "model_column": "How often do you wake up in the middle of the night?"
+    },
+    {
+      "key": "caffeine_intake",
+      "label": "Daily Caffeine Intake",
+      "icon": "☕",
+      "category": "Lifestyle & Behavior",
+      "description": "How many cups of caffeine (tea/coffee/energy drinks) you have daily.",
+      "input_type": "select",
+      "options": [
+        "1-2",
+        "3-4",
+        "5 or more"
+      ],
+      "default": "3-4",
+      "recommended": "Limit to 1-2 cups before the afternoon",
+      "model_column": "How many cups of caffeine (tea/coffee/energy drinks) do you have daily?"
+    },
+    {
+      "key": "bedtime_device_use",
+      "label": "Bedtime Device Use",
+      "icon": "📱",
+      "category": "Lifestyle & Behavior",
+      "description": "How often you use electronic devices (phone/laptop) in bed before sleep.",
+      "input_type": "select",
+      "options": [
+        "Never",
+        "Rarely",
+        "Sometimes",
+        "Always"
+      ],
+      "default": "Sometimes",
+      "recommended": "No (screen-free 30 min before bed)",
+      "model_column": "How often do you use electronic devices (phone/laptop) in bed before sleep?"
+    },
+    {
+      "key": "cognitive_load",
+      "label": "Cognitive Load",
+      "icon": "🧠",
+      "category": "Lifestyle & Behavior",
+      "description": "How often you feel cognitive load during the day.",
+      "input_type": "select",
+      "options": [
+        "Never",
+        "Rarely",
+        "Sometimes",
+        "Always"
+      ],
+      "default": "Sometimes",
+      "recommended": "Rarely - Sometimes",
+      "model_column": "How often do you feel cognitive load?"
+    },
+    {
+      "key": "stress_frequency",
+      "label": "Stress Frequency",
+      "icon": "😰",
+      "category": "Lifestyle & Behavior",
+      "description": "How often you feel stressed in your daily academic life.",
+      "input_type": "select",
+      "options": [
+        "Never",
+        "Rarely",
+        "Sometimes",
+        "Often",
+        "Always"
+      ],
+      "default": "Sometimes",
+      "recommended": "Rarely - Sometimes",
+      "model_column": "How often do you feel stressed?"
+    },
+    {
+      "key": "fatigue_level",
+      "label": "Mental / Physical Fatigue",
+      "icon": "🪫",
+      "category": "Lifestyle & Behavior",
+      "description": "How often physical or mental fatigue prevents you from completing your daily goals.",
+      "input_type": "select",
+      "options": [
+        "Never",
+        "Rarely",
+        "Sometimes",
+        "Often",
+        "Always"
+      ],
+      "default": "Sometimes",
+      "recommended": "Rarely - Sometimes",
+      "model_column": "How often does physical or mental fatigue prevent you from completing your daily goals? "
+    },
+    {
+      "key": "gpa_impact",
+      "label": "Sleep Impact on GPA",
+      "icon": "📉",
+      "category": "Academic Impact",
+      "description": "To what extent you feel sleep deprivation is lowering your GPA.",
+      "input_type": "select",
+      "options": [
+        "No impact",
+        "Minor impact",
+        "Moderate impact",
+        "High impact",
+        "Severe impact"
+      ],
+      "default": "Minor impact",
+      "recommended": "No - Minor impact",
+      "model_column": "To what extent do you feel sleep deprivation is lowering your GPA?"
+    },
+    {
+      "key": "missed_deadlines",
+      "label": "Missed Deadlines",
+      "icon": "🗓️",
+      "category": "Academic Impact",
+      "description": "How many academic deadlines you have missed or delayed in the last month.",
+      "input_type": "select",
+      "options": [
+        "1-2",
+        "3-4",
+        "5 or more"
+      ],
+      "default": "1-2",
+      "recommended": "None",
+      "model_column": "How many academic deadlines have you missed or delayed in the last month?"
+    },
+    {
+      "key": "mental_stamina",
+      "label": "Mental Stamina",
+      "icon": "⚡",
+      "category": "Cognitive Symptoms",
+      "description": "Your ability to think hard for long periods of time.",
+      "input_type": "select",
+      "options": [
+        "1 (Total Exhaustion)",
+        "2 (Fading Fast)",
+        "3 (Full Energy)"
+      ],
+      "default": "2 (Fading Fast)",
+      "recommended": "3 (Full Energy)",
+      "model_column": "How would you rate your \"Mental Stamina\" (the ability to think hard for long periods)?"
+    },
+    {
+      "key": "spacing_out",
+      "label": "Spacing Out",
+      "icon": "💭",
+      "category": "Cognitive Symptoms",
+      "description": "How often you find yourself spacing out or losing your train of thought during conversations.",
+      "input_type": "select",
+      "options": [
+        "Never",
+        "Rarely",
+        "Sometimes",
+        "Always"
+      ],
+      "default": "Sometimes",
+      "recommended": "Never - Rarely",
+      "model_column": "How often do you find yourself \"spacing out\" or losing your train of thought during conversations?"
+    },
+    {
+      "key": "audio_lag",
+      "label": "Audio Lag",
+      "icon": "👂",
+      "category": "Cognitive Symptoms",
+      "description": "Whether you hear someone speak but take a few seconds to understand the meaning.",
+      "input_type": "select",
+      "options": [
+        "No",
+        "Maybe",
+        "Yes"
+      ],
+      "default": "Maybe",
+      "recommended": "No",
+      "model_column": "Do you experience \"Audio Lag\" (hearing someone speak but taking a few seconds to understand the meaning)?"
+    },
+    {
+      "key": "forgetfulness",
+      "label": "Forgetting Daily Information",
+      "icon": "🔍",
+      "category": "Cognitive Symptoms",
+      "description": "How often you forget basic information in your daily life.",
+      "input_type": "select",
+      "options": [
+        "Never",
+        "Rarely",
+        "Sometimes",
+        "Always"
+      ],
+      "default": "Sometimes",
+      "recommended": "Never - Rarely",
+      "model_column": "How often do you forget basic information in your daily life?"
+    },
+    {
+      "key": "reminder_reliance",
+      "label": "Reminder Reliance",
+      "icon": "⏰",
+      "category": "Cognitive Symptoms",
+      "description": "How much you rely on external reminders (alarms, notes, friends) to remember basic daily tasks.",
+      "input_type": "select",
+      "options": [
+        "Not at all",
+        "Sometimes",
+        "Completely dependent"
+      ],
+      "default": "Sometimes",
+      "recommended": "Not at all",
+      "model_column": "How much do you rely on \"external reminders\" (alarms, notes, friends) to remember basic daily tasks?"
+    },
+    {
+      "key": "brain_fog",
+      "label": "Brain Fog",
+      "icon": "🌫️",
+      "category": "Cognitive Symptoms",
+      "description": "How frequently you experience confusion or lack of mental clarity.",
+      "input_type": "select",
+      "options": [
+        "Never",
+        "Sometimes",
+        "Always"
+      ],
+      "default": "Sometimes",
+      "recommended": "Never",
+      "model_column": "How frequently do you experience \"Brain Fog\" (confusion or lack of clarity)?"
+    },
+    {
+      "key": "decision_making",
+      "label": "Decision-Making Difficulty",
+      "icon": "⚖️",
+      "category": "Cognitive Symptoms",
+      "description": "Whether you struggle with making quick decisions or solving logical problems.",
+      "input_type": "select",
+      "options": [
+        "Never",
+        "Sometimes",
+        "Always"
+      ],
+      "default": "Sometimes",
+      "recommended": "Never",
+      "model_column": "Do you struggle with making quick decisions or solving logical problems?"
+    }
+  ]
+}

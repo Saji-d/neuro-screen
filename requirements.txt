@@ -1,0 +1,11 @@
+streamlit>=1.40
+plotly>=5.20
+pandas>=2.0
+numpy>=1.24
+scikit-learn>=1.3
+
+# Required ONLY to train the model and to run live inference
+# (scripts/train_models.py + modules/predictor.py).
+# The app boots without these and shows a "models not loaded" banner.
+catboost>=1.2
+torch>=2.1

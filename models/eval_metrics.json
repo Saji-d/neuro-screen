@@ -1,0 +1,41 @@
+{
+  "CatBoost": {
+    "accuracy": 0.9129,
+    "precision": 0.9635,
+    "recall": 0.7952,
+    "f1": 0.8713,
+    "roc_auc": 0.9797,
+    "confusion_matrix": {
+      "tn": 277,
+      "fp": 5,
+      "fn": 34,
+      "tp": 132
+    }
+  },
+  "ANN": {
+    "accuracy": 0.971,
+    "precision": 0.9422,
+    "recall": 0.9819,
+    "f1": 0.9617,
+    "roc_auc": 0.9984,
+    "confusion_matrix": {
+      "tn": 272,
+      "fp": 10,
+      "fn": 3,
+      "tp": 163
+    }
+  },
+  "Hybrid": {
+    "accuracy": 0.9821,
+    "precision": 0.9702,
+    "recall": 0.9819,
+    "f1": 0.976,
+    "roc_auc": 0.9982,
+    "confusion_matrix": {
+      "tn": 277,
+      "fp": 5,
+      "fn": 3,
+      "tp": 163
+    }
+  }
+}

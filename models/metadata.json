@@ -1,0 +1,90 @@
+{
+  "feature_cols": [
+    "What is your age?",
+    "What is your gender?",
+    "What is your University name?",
+    "Your current year of study?",
+    "How many cups of caffeine (tea/coffee/energy drinks) do you have daily?",
+    "How often do you use electronic devices (phone/laptop) in bed before sleep?",
+    "How often do you feel cognitive load?",
+    "How often do you feel stressed?",
+    "How would you rate your \"Mental Stamina\" (the ability to think hard for long periods)?",
+    "How often do you find yourself \"spacing out\" or losing your train of thought during conversations?",
+    "Do you experience \"Audio Lag\" (hearing someone speak but taking a few seconds to understand the meaning)?",
+    "On average, how many hours of actual sleep do you get per night?",
+    "How often do you wake up in the middle of the night?",
+    "How would you rate your overall sleep quality?",
+    "How often do you forget basic information in your daily life?",
+    "How much do you rely on \"external reminders\" (alarms, notes, friends) to remember basic daily tasks?",
+    "How frequently do you experience \"Brain Fog\" (confusion or lack of clarity)?",
+    "How many academic deadlines have you missed or delayed in the last month?",
+    "To what extent do you feel sleep deprivation is lowering your GPA?",
+    "How often does physical or mental fatigue prevent you from completing your daily goals? ",
+    "Do you struggle with making quick decisions or solving logical problems?"
+  ],
+  "cat_features": [
+    "What is your gender?",
+    "What is your University name?",
+    "Your current year of study?",
+    "How many cups of caffeine (tea/coffee/energy drinks) do you have daily?",
+    "How often do you use electronic devices (phone/laptop) in bed before sleep?",
+    "How often do you feel cognitive load?",
+    "How often do you feel stressed?",
+    "How would you rate your \"Mental Stamina\" (the ability to think hard for long periods)?",
+    "How often do you find yourself \"spacing out\" or losing your train of thought during conversations?",
+    "Do you experience \"Audio Lag\" (hearing someone speak but taking a few seconds to understand the meaning)?",
+    "On average, how many hours of actual sleep do you get per night?",
+    "How often do you wake up in the middle of the night?",
+    "How would you rate your overall sleep quality?",
+    "How often do you forget basic information in your daily life?",
+    "How much do you rely on \"external reminders\" (alarms, notes, friends) to remember basic daily tasks?",
+    "How frequently do you experience \"Brain Fog\" (confusion or lack of clarity)?",
+    "How many academic deadlines have you missed or delayed in the last month?",
+    "To what extent do you feel sleep deprivation is lowering your GPA?",
+    "How often does physical or mental fatigue prevent you from completing your daily goals? ",
+    "Do you struggle with making quick decisions or solving logical problems?"
+  ],
+  "num_cols": [
+    "What is your age?"
+  ],
+  "threshold": 0.5,
+  "labels": {
+    "0": "Healthy",
+    "1": "Impaired"
+  },
+  "ann_input_dim": 104,
+  "config": {
+    "catboost": {
+      "iterations": 800,
+      "learning_rate": 0.002,
+      "depth": 5,
+      "random_seed": 42,
+      "early_stopping_rounds": 50,
+      "eval_metric": "Logloss",
+      "verbose": 100
+    },
+    "ann": {
+      "epochs": 40,
+      "batch_size": 16,
+      "lr": 0.008,
+      "dropout": [
+        0.6,
+        0.4
+      ]
+    },
+    "split": {
+      "test_size": 0.2,
+      "random_state": 42
+    }
+  },
+  "dataset": {
+    "rows": 2236,
+    "columns": 32,
+    "features": 21,
+    "train": 1788,
+    "test": 448,
+    "insomniac_rate": 0.7567,
+    "impaired_rate": 0.3716
+  },
+  "trained_at": "2026-08-06T08:18:07"
+}

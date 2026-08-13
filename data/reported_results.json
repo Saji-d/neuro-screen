@@ -1,0 +1,81 @@
+{
+  "_comment": "Reported results from the Neuro-Screen conference paper (ICCA 2026) and thesis report. These are the official evaluation numbers published in the paper (Table 2, Figure 6, Figure 9). They are shown on the Explainability page under 'Reported (paper)' and are distinct from numbers reproduced live from the trained model.",
+  "title": "Neuro-Screen: A Hybrid Ensemble Framework for Detection of Cognitive Impairment in Insomniac Students",
+  "venue": "Proceedings of the 4th International Conference on Computing Advancements (ICCA 2026), Dhaka, Bangladesh",
+  "abstract": "Cognitive impairment is turning into one of the serious issues faced by university students owing to sleep disorders and clinical features of insomnia. Even though academic performance and mental wellness have been studied, there is a huge gap in the research domain that needs to be filled to develop appropriate and automated frameworks to detect the cognitive impairment caused by insomnia in the student community. The current thesis tries to fill this gap using a new and enhanced hybrid ensemble model referred to as 'Neuro-Screen' which detects the cognitive impairment caused by insomnia in university students. A large amount of data was collected: 2,237 surveys from university students aged between 20 and 35, from which demographic information, lifestyle, mental stamina and sleep quality features were generated. The methodology used here is a systematic approach. The architecture of the hybrid approach uses a CatBoost Gradient Boosting classifier, famous for its capabilities of handling categorical features and non-linear interactions, together with a three-layered Artificial Neural Network (ANN), which provides robust feature extraction capability. These models form an averaged ensemble using the blending technique to obtain the final cognitive status. The introduced Neuro-Screen approach outperforms the individual models with 95.20% classification accuracy, an F1 score of 95.24% and a ROC-AUC of 0.9820. As per the results of the experiment, the hybrid approach can catch the complex non-linear interactions among lifestyle factors and the cognitive state very well. Its high recall rate makes it a great framework for clinical applications and health screening in the classroom, as well as reliably identifying at-risk students that need academic and psychological interventions.",
+  "keywords": ["cognitive impairment", "insomnia", "catboost", "artificial neural network", "ensemble"],
+  "dataset": {
+    "responses": 2237,
+    "columns": 22,
+    "model_features": 21,
+    "train": 1790,
+    "test": 447,
+    "age_range": "20-35",
+    "population": "University students in Bangladesh",
+    "insomniac_rate": 0.757,
+    "impairment_positive_rate": 0.371,
+    "split": "80/20 stratified, random_state=42"
+  },
+  "target": {
+    "method": "Sum of seven self-reported cognitive symptoms (mental stamina, spacing out, audio lag, forgetfulness, reminder reliance, brain fog, decision making) then binarized at the 72nd percentile of the cumulative cognitive score.",
+    "labels": {"0": "Healthy", "1": "Impaired"}
+  },
+  "models": {
+    "catboost": {
+      "iterations": 800,
+      "learning_rate": 0.002,
+      "depth": 5,
+      "random_seed": 42,
+      "early_stopping_rounds": 50,
+      "eval_metric": "Logloss",
+      "categorical_handling": "native (no one-hot encoding)"
+    },
+    "ann": {
+      "architecture": "128 -> 64 -> 1 (MLP)",
+      "activations": "ReLU (hidden), Sigmoid (output)",
+      "dropout": [0.6, 0.4],
+      "optimizer": "Adam",
+      "learning_rate": 0.008,
+      "loss": "Binary Cross-Entropy",
+      "epochs": 40,
+      "batch_size": 16,
+      "preprocessing": "one-hot encoding of categorical features, StandardScaler on age"
+    },
+    "hybrid": {
+      "blend": "arithmetic mean of probabilities",
+      "formula": "P_hybrid = (P_catboost + P_ann) / 2",
+      "threshold": 0.5
+    }
+  },
+  "metrics_table": {
+    "metric_names": ["Accuracy", "Precision", "Recall", "F1-Score", "ROC-AUC"],
+    "rows": {
+      "CatBoost": [0.9412, 0.9380, 0.9500, 0.9439, 0.9780],
+      "ANN": [0.9125, 0.8950, 0.9200, 0.9073, 0.9450],
+      "Hybrid": [0.9520, 0.9440, 0.9610, 0.9524, 0.9820]
+    }
+  },
+  "confusion_matrix": {
+    "n": 447,
+    "tn": 212,
+    "fp": 12,
+    "fn": 9,
+    "tp": 214,
+    "note": "Rows = true label (Healthy, Impaired); columns = predicted label."
+  },
+  "feature_importance": [
+    {"feature": "Mental / Physical Fatigue", "importance": 0.095},
+    {"feature": "Stress Frequency", "importance": 0.095},
+    {"feature": "GPA Impact (Sleep)", "importance": 0.095},
+    {"feature": "Overall Sleep Quality", "importance": 0.093},
+    {"feature": "Average Sleep Hours", "importance": 0.092},
+    {"feature": "Academic Year", "importance": 0.088},
+    {"feature": "Bedtime Device Use", "importance": 0.082},
+    {"feature": "Reminder Reliance", "importance": 0.066},
+    {"feature": "Daily Caffeine Intake", "importance": 0.063},
+    {"feature": "Mental Stamina", "importance": 0.063},
+    {"feature": "Nightly Awakenings", "importance": 0.063},
+    {"feature": "Missed Deadlines", "importance": 0.038},
+    {"feature": "Gender", "importance": 0.030}
+  ]
+}
