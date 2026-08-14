@@ -139,15 +139,14 @@ def render() -> None:
     components.section_title("Methodology", "How Neuro-Screen works")
     steps = [
         ("1", "🧭", "Quick check-in",
-         "Answer 21 short questions about sleep, lifestyle and everyday cognitive "
-         "symptoms — no accounts, no invasive tests."),
-        ("2", "🤖", "Hybrid inference",
-         "A CatBoost gradient-boosting model and a 3-layer neural network each "
-         "score your responses; their probabilities are blended into one "
-         "confidence estimate (P_hybrid = (P_catboost + P_ann) / 2)."),
-        ("3", "🔬", "Explainable result",
-         "You get a risk level, the contributing factors, and practical "
-         "recommendations — not just a number."),
+         "Answer 21 short questions about your sleep, lifestyle and everyday "
+         "symptoms."),
+        ("2", "🤖", "Smart analysis",
+         "The hybrid model analyzes your answers and estimates your risk of "
+         "cognitive impairment."),
+        ("3", "🔬", "Clear result",
+         "You get your risk level, the factors behind it, and practical "
+         "recommendations."),
     ]
     s1, s2, s3 = st.columns(3, gap="medium")
     for col, (num, icon, title, body) in zip((s1, s2, s3), steps):

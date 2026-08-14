@@ -83,29 +83,21 @@ def severity_for(proba: float) -> str:
 # were the strongest predictors of cognitive impairment).
 # ------------------------------------------------------------------
 _LOW_RECS = [
-    "Your answers place you in the healthy range. Keep protecting your sleep — "
-    "consistent bedtime and wake-up times are the single best habit.",
-    "Take a short re-check in a week so we can catch any early changes while "
-    "they are still small.",
+    "Your answers are in the healthy range — keep protecting your sleep.",
+    "Re-check in a week to catch any early changes.",
 ]
 
 _MODERATE_RECS = [
-    "Sleep quality mattered slightly more than sleep hours in our study — try "
-    "a screen-free wind-down 30 minutes before bed and see how it feels.",
-    "Fatigue and stress were the strongest predictors we found. Break long "
-    "study sessions into 20-25 minute blocks with short breaks.",
-    "Re-run this assessment in a few days. Small lifestyle shifts often move "
-    "the score quickly.",
+    "Try a screen-free 30 minutes before bed — sleep quality matters most.",
+    "Break long study sessions into 20-25 minute blocks to manage fatigue.",
+    "Re-run this assessment in a few days — small changes move the score.",
 ]
 
 _HIGH_RECS = [
-    "Please talk to the AIUB Psychological Support Center this week — that is "
-    "exactly what it is there for, and it is free for students.",
-    "Try to recover sleep over the next two days even with deadlines — short "
-    "term recovery is more effective than you expect.",
-    "Let your academic advisor know that tiredness is making coursework "
-    "harder; they can help adjust workload.",
-    "Reduce caffeine after midday and avoid screens for 30 minutes before bed.",
+    "Reach out to the AIUB Psychological Support Center this week — it's free for students.",
+    "Prioritize sleep recovery over the next two days.",
+    "Tell your academic advisor how tiredness is affecting your work.",
+    "Avoid caffeine after midday; no screens 30 minutes before bed.",
 ]
 
 

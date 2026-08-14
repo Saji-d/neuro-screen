@@ -53,12 +53,14 @@ def render() -> None:
         st.markdown(
             glass_card(
                 f"""
-                <div class="ns-kicker" style="margin-bottom:8px;">Prediction</div>
-                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                <div class="ns-kicker" style="margin-bottom:4px;">Prediction</div>
+                <div class="ns-verdict" style="color:{color};">
+                  {esc(result.prediction_label)}
+                </div>
+                <div class="ns-verdict-sub">
                   <span class="ns-chip"
-                        style="color:{color};background:{color}1f;border:1px solid {color}55;
-                               font-size:1rem;padding:7px 16px;">
-                    {esc(result.prediction_label)}
+                        style="color:{color};background:{color}1f;border:1px solid {color}55;">
+                    {esc(result.severity)}
                   </span>
                   <span class="ns-chip"
                         style="color:#e6edf7;background:rgba(255,255,255,.05);
@@ -130,6 +132,7 @@ def render() -> None:
 
     st.markdown("")
     components.render_disclaimer()
+    st.markdown('<div style="height:0.6rem;"></div>', unsafe_allow_html=True)
 
     # ---- further actions ----
     c1, c2, c3 = st.columns(3, gap="medium")

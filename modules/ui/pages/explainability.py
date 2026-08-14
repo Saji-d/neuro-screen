@@ -93,10 +93,16 @@ def _reported_section() -> None:
     if imp:
         st.plotly_chart(charts.feature_importance(imp), width="stretch")
 
+    st.markdown("")
     st.markdown(
         glass_card(
-            f"<div class='ns-kicker' style='margin-bottom:6px;'>Target definition</div>"
-            f"<p style='color:#94a3b8;font-size:0.9rem;'>{esc(paper.get('target', {}).get('method', ''))}</p>",
+            f"<div class='ns-kicker' style='margin-bottom:6px;'>What this predicts</div>"
+            f"<p style='color:#cbd5e1;font-size:0.92rem;'>Neuro-Screen estimates the "
+            f"likelihood that your answers point to <b>cognitive impairment</b> — "
+            f"everyday signs like forgetfulness, brain fog, and trouble concentrating. "
+            f"It is a screening estimate based on how you describe yourself, "
+            f"<b>not a medical diagnosis</b>, and it does not replace a professional "
+            f"assessment.</p>",
             padding="1.3rem 1.5rem",
         ),
         unsafe_allow_html=True,
@@ -140,4 +146,5 @@ def render() -> None:
     st.markdown("")
     _reported_section()
 
+    st.markdown("")
     components.render_disclaimer()

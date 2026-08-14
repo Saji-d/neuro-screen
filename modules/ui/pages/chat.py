@@ -16,5 +16,6 @@ from modules.ui import components
 def render() -> None:
     components.render_model_banner()
     components.section_title("Assistant", "Chat through your check-in")
-    assistant.render()
     components.render_disclaimer()
+    assistant.render()
+    components.scroll_to_latest_chat()

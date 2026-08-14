@@ -18,7 +18,7 @@ import streamlit.components.v1 as components_v1
 import config
 from modules import predictor
 from modules.ui import navigation
-from modules.ui.theme import TIER_COLORS, esc, glass_card
+from modules.ui.theme import TIER_COLORS, esc
 
 NAV_ITEMS = [
     ("home", "🏠", "Home"),
@@ -112,16 +112,16 @@ def render_sidebar(active: str) -> None:
 
     with st.sidebar:
         st.markdown(
-            f'<div class="ns-brand">{_logo_html()}'
-            f'<div><div class="ns-brand-name">{config.BRAND["name"]}</div>'
-            f'<div class="ns-brand-sub">AIUB · CSE</div></div></div>',
+            f'<div class="ns-brand">{_logo_html()}</div>'
+            f'<div class="ns-brand-name" style="padding-bottom:1.2rem;">'
+            f'{esc(config.BRAND["name"])}</div>',
             unsafe_allow_html=True,
         )
 
-        for key, icon, label in NAV_ITEMS:
+        for key, icon, nav_label in NAV_ITEMS:
             is_active = key == active
             if st.button(
-                f"{icon}  {label}",
+                f"{icon}  {nav_label}",
                 key=f"nav_{key}",
                 type="primary" if is_active else "secondary",
                 width="stretch",
@@ -129,19 +129,14 @@ def render_sidebar(active: str) -> None:
                 navigation.goto(key)
 
         st.markdown(
-            f'<div style="font-size:0.78rem;color:#94a3b8;padding:0.2rem 0.2rem 1.1rem;">'
+            f'<div class="ns-sidebar-footer">'
+            f'<div class="ns-sidebar-status">'
             f'<span class="ns-status-dot" style="background:{dot_color};'
-            f'box-shadow:0 0 10px {dot_color};"></span>{status_text}'
-            f'<div style="font-size:0.7rem;color:#64748b;margin-top:4px;">{esc(label)}</div></div>',
-            unsafe_allow_html=True,
-        )
-
-        st.markdown(
-            f'<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:0.9rem;'
-            f'text-align:center;">'
-            f'<div style="color:#64748b;font-size:0.7rem;line-height:1.5;">'
-            f'Designed &amp; developed by<br/>'
-            f'<span style="color:#94a3b8;font-weight:500;">Sajidur Rahman Sajid</span></div></div>',
+            f'box-shadow:0 0 10px {dot_color};"></span>{esc(status_text)}</div>'
+            f'<div class="ns-sidebar-status-sub">{esc(label)}</div>'
+            f'<div class="ns-sidebar-credit">Designed &amp; developed by<br/>'
+            f'<span class="ns-sidebar-author">Sajidur Rahman Sajid</span></div>'
+            f'</div>',
             unsafe_allow_html=True,
         )
 
@@ -191,15 +186,45 @@ def render_model_banner() -> None:
 
 def render_disclaimer() -> None:
     st.markdown(
-        glass_card(
-            "⚠️&nbsp; Neuro-Screen is a research prototype for screening cognitive-"
-            "impairment risk factors linked to insomnia. It is <b>not a medical "
-            "diagnosis</b> and does not replace professional care. If you are "
-            "struggling, please reach out to the <b>AIUB Psychological Support "
-            "Center</b> or someone you trust.",
-            padding="0.9rem 1.2rem",
-        ),
+        '<div class="ns-disclaimer">⚠️&nbsp; Research prototype — not a '
+        'clinical diagnosis.</div>',
         unsafe_allow_html=True,
+    )
+
+
+def scroll_to_latest_chat() -> None:
+    """Scroll the newest chat message into view after the conversation updates.
+
+    Streamlit keeps the chat input pinned at the bottom of the viewport, and
+    it renders each ``st.chat_message`` as an ordinary block, so without an
+    explicit scroll the latest assistant reply can land below the fold. This
+    runs a tiny script that finds the last chat message and brings it into
+    view — repeated briefly so it wins the race against Streamlit's streaming.
+    """
+    components_v1.html(
+        """
+        <script>
+          (function () {
+            const doc = window.parent.document;
+            function toLast(smooth) {
+              const msgs = doc.querySelectorAll('[data-testid="stChatMessage"]');
+              if (!msgs.length) return;
+              msgs[msgs.length - 1].scrollIntoView({
+                block: 'start',
+                behavior: smooth ? 'smooth' : 'auto',
+              });
+            }
+            toLast(true);
+            let ticks = 0;
+            const timer = setInterval(function () {
+              toLast(false);
+              ticks += 1;
+              if (ticks > 12) { clearInterval(timer); }
+            }, 90);
+          })();
+        </script>
+        """,
+        height=0,
     )
 
 

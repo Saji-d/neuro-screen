@@ -52,6 +52,12 @@ def _render_feature(feat: dict, cols: tuple) -> None:
     """One question: descriptive card (left) + input widget (right)."""
     left, right = cols
     with left:
+        reco = feat.get("recommended", "")
+        reco_html = (
+            f'<div class="ns-feature-reco">💡 {esc(reco)}</div>'
+            if reco and reco.lower() not in ("n/a", "none", "")
+            else ""
+        )
         st.markdown(
             f"""
             <div class="ns-feature ns-animate">
@@ -62,7 +68,7 @@ def _render_feature(feat: dict, cols: tuple) -> None:
                     {esc(feat.get("category", ""))}</span>
                 </div>
                 <div class="ns-feature-desc">{esc(feat.get("description", ""))}</div>
-                <div class="ns-feature-reco">💡 {esc(feat.get("recommended", ""))}</div>
+                {reco_html}
               </div>
             </div>
             """,
@@ -126,8 +132,8 @@ def render() -> None:
     st.markdown(
         f"<p style='color:#94a3b8;max-width:760px;'>Answer the {len(features)} "
         f"questions below as honestly as you can — there are no wrong answers. "
-        f"Neuro-Screen blends a CatBoost model and a neural network on your "
-        f"answers to estimate cognitive-impairment risk linked to insomnia.</p>",
+        f"Neuro-Screen analyzes your responses and estimates your risk of "
+        f"cognitive impairment linked to insomnia.</p>",
         unsafe_allow_html=True,
     )
 
