@@ -65,5 +65,15 @@ inject_theme()
 
 pages = _build_pages()
 pg = st.navigation(pages, position="hidden")
-components.render_sidebar(navigation.active_key(pg))
+active = navigation.active_key(pg)
+components.render_sidebar(active)
+
+# Scroll to top only on an actual page change, not on every rerun — a
+# widget interaction inside a page (e.g. answering a question) also
+# triggers a rerun, and unconditionally resetting scroll there would yank
+# the user back to the top mid-form.
+if st.session_state.get("_current_page") != active:
+    st.session_state["_current_page"] = active
+    components.scroll_to_top()
+
 pg.run()

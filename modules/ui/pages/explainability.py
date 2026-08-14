@@ -43,7 +43,7 @@ def _live_section() -> None:
 
     if rows.get("Hybrid"):
         h = metrics_all["Hybrid"]
-        cols = st.columns(5)
+        cols = st.columns(5, gap="medium")
         for col, (name, key) in zip(cols, zip(_METRIC_NAMES, _METRIC_ORDER)):
             with col:
                 components.stat_card(

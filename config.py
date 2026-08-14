@@ -15,6 +15,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import streamlit as st
+
 # ------------------------------------------------------------------
 # Filesystem layout
 # ------------------------------------------------------------------
@@ -93,13 +95,29 @@ RISK = {
 # ------------------------------------------------------------------
 # Small JSON helpers
 # ------------------------------------------------------------------
-def load_json(path: Path):
-    """Load a JSON file as a dict (returns {} on any failure)."""
+@st.cache_data(show_spinner=False)
+def _load_json_cached(path_str: str, mtime: float):
+    """Cached JSON read, keyed on path + mtime so a re-trained/edited file
+    (different mtime) is picked up without needing an app restart."""
     try:
-        with open(path, "r", encoding="utf-8") as fh:
+        with open(path_str, "r", encoding="utf-8") as fh:
             return json.load(fh)
     except (OSError, ValueError):
         return {}
+
+
+def load_json(path: Path):
+    """Load a JSON file as a dict (returns {} on any failure).
+
+    Cached by (path, mtime) — these files are static config/reported-results/
+    trained-artifact metadata, never per-user data, so caching is safe and
+    avoids re-parsing on every Streamlit rerun.
+    """
+    try:
+        mtime = path.stat().st_mtime
+    except OSError:
+        return {}
+    return _load_json_cached(str(path), mtime)
 
 
 def save_json(path: Path, payload) -> None:

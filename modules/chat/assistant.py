@@ -129,7 +129,8 @@ def _summary_and_predict(features: list[dict]) -> None:
         return
 
     try:
-        result = predictor.predict(raw_inputs)
+        with st.spinner("Running the hybrid model on your answers…"):
+            result = predictor.predict(raw_inputs)
     except predictor.ModelNotReadyError:
         _append("assistant", "The model isn't available right now — please check "
                              "the status banner on the Home page.")
@@ -195,7 +196,10 @@ def render() -> None:
                 + _question(features[0]))
 
     for message in st.session_state[MSG]:
-        with st.chat_message(message["role"]):
+        avatar = "🧑" if message["role"] == "user" else "🧠"
+        label = "You" if message["role"] == "user" else "Neuro-Screen Assistant"
+        with st.chat_message(message["role"], avatar=avatar):
+            st.caption(label)
             st.markdown(message["content"])
 
     user_text = st.chat_input("Type your answer…")
@@ -229,3 +233,11 @@ def render() -> None:
                     _question(features[st.session_state[STEP]]))
         else:
             _summary_and_predict(features)
+
+    # Messages appended above were added AFTER the render loop already ran,
+    # so without forcing a fresh rerun here they would stay invisible until
+    # the user's *next* message — at which point both the missed response
+    # and the new one would appear together, looking like a duplicate. This
+    # rerun makes the message list (the single source of truth) the only
+    # thing that ever gets rendered.
+    st.rerun()

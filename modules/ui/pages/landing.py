@@ -48,7 +48,7 @@ def render() -> None:
     st.markdown('<div class="ns-section-head ns-animate"><span class="ns-kicker">'
                 'Paper-reported performance · Hybrid ensemble</span></div>',
                 unsafe_allow_html=True)
-    cols = st.columns(5)
+    cols = st.columns(5, gap="medium")
     for col, (name, value) in zip(cols, zip(_METRIC_NAMES, _HYBRID_ROW)):
         with col:
             components.stat_card(
@@ -65,7 +65,7 @@ def render() -> None:
     abstract = paper.get("abstract", "")
     ds = paper.get("dataset", {})
 
-    left, right = st.columns([3, 2])
+    left, right = st.columns([3, 2], gap="large")
     with left:
         st.markdown(
             glass_card(
@@ -140,7 +140,7 @@ def render() -> None:
          "You get a risk level, the contributing factors, and practical "
          "recommendations — not just a number."),
     ]
-    s1, s2, s3 = st.columns(3)
+    s1, s2, s3 = st.columns(3, gap="medium")
     for col, (num, icon, title, body) in zip((s1, s2, s3), steps):
         with col:
             st.markdown(
@@ -158,7 +158,7 @@ def render() -> None:
 
     # ---- authors / thesis group ----
     components.section_title("Team", "The people behind Neuro-Screen")
-    a1, a2 = st.columns(2)
+    a1, a2 = st.columns(2, gap="large")
     with a1:
         author_cards = "".join(
             f'<div style="display:flex;justify-content:space-between;align-items:center;'

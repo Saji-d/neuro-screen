@@ -13,6 +13,7 @@ from __future__ import annotations
 import base64
 
 import streamlit as st
+import streamlit.components.v1 as components_v1
 
 import config
 from modules import predictor
@@ -28,9 +29,55 @@ NAV_ITEMS = [
 ]
 
 # ------------------------------------------------------------------
+# Scroll position
+# ------------------------------------------------------------------
+def scroll_to_top() -> None:
+    """Force the app's scroll position back to the top of the page.
+
+    Streamlit's native multipage navigation (st.switch_page) does not reset
+    scroll position on its own, so after a long form + rerun the browser can
+    land mid-page. This runs a tiny same-origin script against the parent
+    document (the standard bridge Streamlit's own custom-components use) —
+    it is the actual mechanism available for this, not a workaround.
+    """
+    components_v1.html(
+        """
+        <script>
+          (function () {
+            const doc = window.parent.document;
+            function reset() {
+              const targets = [
+                doc.querySelector('section.main'),
+                doc.querySelector('[data-testid="stAppViewContainer"]'),
+                doc.querySelector('[data-testid="stMainBlockContainer"]'),
+              ];
+              for (const el of targets) { if (el) { el.scrollTop = 0; } }
+              window.parent.scrollTo(0, 0);
+            }
+            // Streamlit streams the rest of the page in after this script
+            // runs, so one reset can lose to content still being appended —
+            // keep resetting for a short window until the page settles.
+            reset();
+            let ticks = 0;
+            const timer = setInterval(function () {
+              reset();
+              ticks += 1;
+              if (ticks > 12) { clearInterval(timer); }
+            }, 60);
+          })();
+        </script>
+        """,
+        height=0,
+    )
+
+
+# ------------------------------------------------------------------
 # Sidebar
 # ------------------------------------------------------------------
+@st.cache_data(show_spinner=False)
 def _logo_html() -> str:
+    """Base64-encoded logo <img> tag, cached — the sidebar renders on every
+    page/rerun, so this avoids re-reading + re-encoding the PNG each time."""
     logo = config.ASSETS_DIR / "aiub_logo.png"
     if not logo.exists():
         return ""
@@ -159,15 +206,22 @@ def render_disclaimer() -> None:
 # Risk meter (pure SVG, animated arc)
 # ------------------------------------------------------------------
 def risk_meter_html(score: int, tier: str) -> str:
-    """Animated semicircular risk meter. 0-100, color-coded by tier."""
+    """Animated semicircular risk meter. 0-100, color-coded by tier.
+
+    The score and its "Risk score" caption are drawn as native SVG <text>
+    elements (not an HTML div overlaid via absolute positioning) so they
+    share the exact same coordinate system as the arc and can never drift
+    into it — the previous overlay approach mixed two independent layout
+    systems, which is what caused the number to collide with the gauge.
+    """
     clamped = max(0, min(100, score))
     arc_length = 301.59  # semicircle, r=96
     dash = arc_length * clamped / 100.0
     color = TIER_COLORS.get(tier, "#5eead4")
     return f"""
     <div class="ns-meter-wrap ns-animate">
-      <div class="ns-meter-ring" style="width:250px;height:175px;">
-        <svg viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+      <div class="ns-meter-ring">
+        <svg viewBox="0 0 240 190" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="meterGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stop-color="#22d3ee"/>
@@ -184,15 +238,13 @@ def risk_meter_html(score: int, tier: str) -> str:
           <text x="24" y="137" font-size="11" fill="#64748b" text-anchor="middle">0</text>
           <text x="120" y="30" font-size="11" fill="#64748b" text-anchor="middle">50</text>
           <text x="216" y="137" font-size="11" fill="#64748b" text-anchor="middle">100</text>
+          <text x="120" y="168" text-anchor="middle" font-family="'Space Grotesk', Inter, sans-serif"
+                font-size="40" font-weight="700" fill="#e6edf7">{clamped}</text>
+          <text x="120" y="184" text-anchor="middle" font-family="Inter, sans-serif"
+                font-size="10" letter-spacing="1.5" fill="#64748b">RISK SCORE</text>
         </svg>
-        <div class="ns-meter-num" style="position:absolute;left:0;right:0;top:52%;bottom:0;
-             display:flex;align-items:flex-start;justify-content:center;flex-direction:column;">
-          <span style="font-size:2.5rem;line-height:1;">{clamped}</span>
-          <small style="font-size:0.72rem;color:#64748b;letter-spacing:.12em;
-               text-transform:uppercase;">Risk score</small>
-        </div>
       </div>
-      <div style="margin-top:14px;">
+      <div style="margin-top:16px;">
         <span class="ns-chip" style="color:{color};background:{color}1f;border:1px solid {color}55;">
           {esc(tier)}
         </span>

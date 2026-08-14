@@ -12,6 +12,8 @@ never fabricates a score.
 
 from __future__ import annotations
 
+import time
+
 import streamlit as st
 
 import config
@@ -22,6 +24,20 @@ from modules.ui.theme import esc, glass_card
 # Widget-state keys live in st.session_state so results/explainability can
 # read back the exact answers that produced a prediction.
 WIDGET_KEY = "feat_{key}"
+
+# Guards the run button against double-submission and drives the staged
+# loading UI. The stages are truthful labels for the real inference
+# pipeline (see modules.predictor.predict) — not a fake training progress %.
+RUNNING_KEY = "assess_running"
+_STAGES = [
+    ("Preparing responses", 10),
+    ("Validating inputs", 22),
+    ("Running CatBoost", 48),
+    ("Running ANN", 68),
+    ("Combining predictions", 84),
+    ("Generating explanation", 96),
+]
+_STAGE_PAUSE = 0.14  # small, deliberate pacing so each stage is perceptible
 
 
 def _default_index(feat: dict) -> int:
@@ -156,23 +172,63 @@ def render() -> None:
         )
         return
 
-    col_btn, col_hint = st.columns([1, 2])
-    with col_btn:
-        if st.button("Run neuro-screen →", type="primary", width="stretch"):
-            raw_inputs, answers = _collect_answers(features)
+    if RUNNING_KEY not in st.session_state:
+        st.session_state[RUNNING_KEY] = False
+
+    run_area = st.empty()
+    with run_area.container():
+        col_btn, col_hint = st.columns([1, 2])
+        with col_btn:
+            clicked = st.button(
+                "Run neuro-screen →", type="primary", width="stretch",
+                disabled=st.session_state[RUNNING_KEY], key="run_neuro_screen",
+            )
+        with col_hint:
+            st.markdown(
+                "<p style='color:#64748b;font-size:0.8rem;'>Your responses are processed "
+                "locally by the trained ensemble and are never stored or uploaded.</p>",
+                unsafe_allow_html=True,
+            )
+
+    if clicked and not st.session_state[RUNNING_KEY]:
+        st.session_state[RUNNING_KEY] = True
+        raw_inputs, answers = _collect_answers(features)
+
+        with run_area.container():
+            st.button("Running…", type="primary", width="stretch", disabled=True,
+                      key="run_neuro_screen_busy")
+            status = st.empty()
+            bar = st.progress(0)
+            result = None
             try:
-                result = predictor.predict(raw_inputs)
+                for label, pct in _STAGES:
+                    status.markdown(
+                        f"<p style='color:#94a3b8;font-size:0.85rem;margin:0.4rem 0 0;'>"
+                        f"🧠 Running Neuro-Screen assessment… <b style='color:#e6edf7;'>"
+                        f"{esc(label)}</b></p>",
+                        unsafe_allow_html=True,
+                    )
+                    bar.progress(pct)
+                    time.sleep(_STAGE_PAUSE)
+                    if label == "Combining predictions":
+                        # The real hybrid inference call — CatBoost + ANN +
+                        # per-instance SHAP — happens right here.
+                        result = predictor.predict(raw_inputs)
+                status.markdown(
+                    "<p style='color:#5eead4;font-size:0.85rem;margin:0.4rem 0 0;'>"
+                    "✅ Assessment complete</p>",
+                    unsafe_allow_html=True,
+                )
+                bar.progress(100)
+                time.sleep(0.2)
             except predictor.ModelNotReadyError:
+                st.session_state[RUNNING_KEY] = False
                 st.error("Model artifacts are missing — see the banner above.")
                 st.stop()
-            st.session_state["last_result"] = result
-            st.session_state["last_answers"] = answers
-            navigation.goto("results")
-    with col_hint:
-        st.markdown(
-            "<p style='color:#64748b;font-size:0.8rem;'>Your responses are processed "
-            "locally by the trained ensemble and are never stored or uploaded.</p>",
-            unsafe_allow_html=True,
-        )
+
+        st.session_state["last_result"] = result
+        st.session_state["last_answers"] = answers
+        st.session_state[RUNNING_KEY] = False
+        navigation.goto("results")
 
     components.render_disclaimer()

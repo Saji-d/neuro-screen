@@ -45,7 +45,7 @@ def render() -> None:
     color = TIER_COLORS.get(result.severity, "#5eead4")
 
     # ---- verdict row: meter + headline numbers ----
-    left, right = st.columns([1.1, 1.6])
+    left, right = st.columns([1.1, 1.6], gap="large")
     with left:
         st.markdown(components.risk_meter_html(result.risk_score, result.severity),
                     unsafe_allow_html=True)
@@ -78,7 +78,7 @@ def render() -> None:
             unsafe_allow_html=True,
         )
 
-        m1, m2, m3 = st.columns(3)
+        m1, m2, m3 = st.columns(3, gap="medium")
         with m1:
             components.stat_card("🎯", "Hybrid", f"{result.proba_impaired*100:.1f}%", "P(impaired)")
         with m2:
@@ -93,7 +93,7 @@ def render() -> None:
     st.markdown("")
 
     # ---- drivers + recommendations ----
-    d_left, d_right = st.columns(2)
+    d_left, d_right = st.columns(2, gap="large")
     with d_left:
         components.section_title("Top drivers", "What moved your score")
         if result.drivers:
@@ -132,7 +132,7 @@ def render() -> None:
     components.render_disclaimer()
 
     # ---- further actions ----
-    c1, c2, c3 = st.columns(3)
+    c1, c2, c3 = st.columns(3, gap="medium")
     with c1:
         if st.button("🔄 Re-run check-in", width="stretch"):
             navigation.goto("assessment")
