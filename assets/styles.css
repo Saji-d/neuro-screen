@@ -249,42 +249,10 @@ p, li, [data-testid="stMarkdown"] p, [data-testid="stMarkdown"] li {
 }
 [data-testid="stSidebar"] *:not([data-testid="stIconMaterial"]) { font-family: var(--font-body); }
 
-/* ---------- sidebar collapse/expand icons (no leaked icon names) ---------- */
-/* Streamlit renders the sidebar collapse + expand buttons with a Material
-   Symbols ligature ("keyboard_double_arrow_left/right"). That ligature is
-   only visible as an icon when the Material font is applied; if the font is
-   ever unavailable or overridden, the raw icon NAME would render as text.
-   Hide the ligature text entirely and draw the same double-chevron glyph,
-   so the icon name can never appear — online or offline. */
-[data-testid="stSidebarCollapseButton"] [data-testid="stIconMaterial"],
-[data-testid="stExpandSidebarButton"] [data-testid="stIconMaterial"] {
-  font-size: 0 !important;
-  line-height: 1 !important;
-  letter-spacing: normal !important;
-}
-[data-testid="stSidebarCollapseButton"] [data-testid="stIconMaterial"]::before {
-  content: "❮❮";
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: -1px;
-  color: rgba(255, 255, 255, 0.6);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-[data-testid="stExpandSidebarButton"] [data-testid="stIconMaterial"]::before {
-  content: "❯❯";
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: -1px;
-  color: rgba(255, 255, 255, 0.6);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+/* ---------- sidebar always visible (no collapse/hide control) ---------- */
+[data-testid="stSidebarCollapseButton"],
+[data-testid="stExpandSidebarButton"] {
+  display: none !important;
 }
 
 /* ---------- animations ---------- */

@@ -137,7 +137,8 @@ def render_sidebar(active: str) -> None:
         )
 
         st.markdown(
-            f'<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:0.9rem;">'
+            f'<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:0.9rem;'
+            f'text-align:center;">'
             f'<div style="color:#64748b;font-size:0.7rem;line-height:1.5;">'
             f'Designed &amp; developed by<br/>'
             f'<span style="color:#94a3b8;font-weight:500;">Sajidur Rahman Sajid</span></div></div>',

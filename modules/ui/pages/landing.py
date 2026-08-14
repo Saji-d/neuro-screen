@@ -61,8 +61,17 @@ def render() -> None:
     st.markdown("")
 
     # ---- abstract + dataset ----
+    # Short, plain-language summary for the homepage card — the full paper
+    # abstract (data/reported_results.json) stays intact as the authoritative
+    # source and is unaffected by this; it's just too long for people to
+    # actually read here.
+    _SUMMARY = (
+        "Neuro-Screen is a hybrid CatBoost + ANN ensemble that screens "
+        "university students for cognitive-impairment risk linked to "
+        "insomnia, using self-reported sleep and lifestyle answers instead "
+        "of clinical testing — so at-risk students can get support early."
+    )
     paper = config.load_json(config.REPORTED_RESULTS)
-    abstract = paper.get("abstract", "")
     ds = paper.get("dataset", {})
 
     left, right = st.columns([3, 2], gap="large")
@@ -70,7 +79,7 @@ def render() -> None:
         st.markdown(
             glass_card(
                 f'<div class="ns-kicker" style="margin-bottom:8px;">About the thesis</div>'
-                f'<div style="color:#cbd5e1;line-height:1.65;font-size:0.95rem;">{esc(abstract)}</div>',
+                f'<div style="color:#cbd5e1;line-height:1.65;font-size:0.95rem;">{esc(_SUMMARY)}</div>',
             ),
             unsafe_allow_html=True,
         )
