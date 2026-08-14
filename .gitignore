@@ -14,6 +14,10 @@ ENV/
 # Streamlit
 .streamlit/secrets.toml
 
+# Vercel CLI local project linkage (this app is not deployed on Vercel —
+# see README — but ignore it in case the CLI is ever run here)
+.vercel/
+
 # Environment / secrets
 .env
 .env.*
