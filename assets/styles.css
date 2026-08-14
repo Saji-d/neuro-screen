@@ -50,10 +50,31 @@ html, body, [data-testid="stAppViewContainer"] {
   background-attachment: fixed;
 }
 
-/* ---------- hide streamlit chrome ---------- */
-#MainMenu, footer, [data-testid="stHeader"], [data-testid="stToolbar"],
+/* ---------- hide streamlit chrome ----------
+   stHeader/stToolbar are NOT display:none'd wholesale: the sidebar's
+   native "expand" button (stExpandSidebarButton) lives inside them, and
+   a display:none ancestor hides descendants no matter what CSS is put
+   on the descendant itself. Instead the header is stripped of its own
+   visuals and made click-through, and everything inside it except the
+   expand button is individually hidden. */
+#MainMenu, footer,
 [data-testid="stDecoration"], [data-testid="stStatusWidget"],
+[data-testid="stToolbarActions"],
 div[data-testid="stNotification"] { display: none !important; }
+
+[data-testid="stHeader"] {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  pointer-events: none !important;
+}
+[data-testid="stToolbar"] {
+  background: transparent !important;
+  pointer-events: none !important;
+}
+[data-testid="stExpandSidebarButton"] { pointer-events: auto !important; }
 
 [data-testid="stApp"] {
   background: transparent;
@@ -249,10 +270,30 @@ p, li, [data-testid="stMarkdown"] p, [data-testid="stMarkdown"] li {
 }
 [data-testid="stSidebar"] *:not([data-testid="stIconMaterial"]) { font-family: var(--font-body); }
 
-/* ---------- sidebar always visible (no collapse/hide control) ---------- */
-[data-testid="stSidebarCollapseButton"],
-[data-testid="stExpandSidebarButton"] {
+/* ---------- sidebar locked open, but always recoverable ----------
+   The in-sidebar collapse control is hidden so it can't be closed from
+   inside — but Streamlit still auto-collapses the sidebar on narrow /
+   zoomed-in viewports, and when it does, the native "expand" control
+   (normally a small arrow pinned to the top-left) is what brings it
+   back. That control must stay in the DOM and reachable, so instead of
+   hiding it we make it an obvious floating button. */
+[data-testid="stSidebarCollapseButton"] {
   display: none !important;
+}
+[data-testid="stExpandSidebarButton"] {
+  display: flex !important;
+  position: fixed !important;
+  top: 14px !important;
+  left: 14px !important;
+  z-index: 999999 !important;
+  background: rgba(15, 23, 42, 0.92) !important;
+  border: 1px solid var(--stroke-strong) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(10px);
+}
+[data-testid="stExpandSidebarButton"] button {
+  color: var(--accent) !important;
 }
 
 /* ---------- animations ---------- */
