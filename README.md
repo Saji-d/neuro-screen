@@ -25,7 +25,7 @@ Neuro-Screen turns a short, self-reported sleep and lifestyle questionnaire into
 | Domain | AI / Machine Learning · Cognitive-impairment screening |
 | Framework | Streamlit (native multipage app) |
 | Models | CatBoost (gradient boosting) + ANN (PyTorch MLP), blended |
-| Dataset | 2,237 self-reported surveys, university students aged 20–35, Bangladesh |
+| Dataset | 2,237 self-reported surveys, university students from 30+ universities, Bangladesh |
 | Features | 21 model input features (22 raw survey columns) |
 | Task | Binary risk classification — Healthy vs. Impaired |
 | Status | Research prototype · undergraduate thesis (AIUB, Group G52) |
@@ -88,7 +88,7 @@ The target label (`cognitive_impairment`) is derived from seven self-reported co
 | Training rows | 1,790 |
 | Test rows | 447 |
 | Split | 80/20 stratified, seed 42 |
-| Population | University students, Bangladesh, ages 20–35 |
+| Population | University students, Bangladesh |
 | Self-reported insomniac | ~75.7% |
 | Labeled impaired (target) | ~37.1% |
 
