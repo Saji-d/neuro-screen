@@ -10,6 +10,7 @@ Neuro-Screen turns a short, self-reported sleep and lifestyle questionnaire into
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.40+-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![CatBoost](https://img.shields.io/badge/CatBoost-1.2+-FFCC00)](https://catboost.ai/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.1+-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://neuro-screen.streamlit.app/)
 [![Status](https://img.shields.io/badge/Status-Research%20Prototype-blueviolet)](#-disclaimer)
 [![License](https://img.shields.io/badge/License-Academic%20Research-lightgrey)](#-license)
 
@@ -30,7 +31,7 @@ Neuro-Screen turns a short, self-reported sleep and lifestyle questionnaire into
 | Task | Binary risk classification — Healthy vs. Impaired |
 | Status | Research prototype · undergraduate thesis (AIUB, Group G52) |
 
-> No public deployment is currently live for this app — see [Local Setup](#-local-setup) to run it yourself.
+> **Live demo:** [neuro-screen.streamlit.app](https://neuro-screen.streamlit.app/). To run it yourself, see [Local Setup](#-local-setup).
 
 ---
 
