@@ -99,10 +99,10 @@ def render() -> None:
             st.markdown(
                 glass_card(
                     f'<div class="ns-kicker" style="margin-bottom:12px;">The dataset</div>'
-                    f'<div class="ns-stat-value" style="font-size:2rem;">{esc(str(md.get("rows", "")))}</div>'
+                    f'<div class="ns-stat-value" style="font-size:2rem;">{esc(str(ds.get("responses", md.get("rows", ""))))}</div>'
                     f'<div class="ns-stat-label">Self-reported surveys collected</div>'
                     f'<div style="margin-top:10px;color:#94a3b8;font-size:0.85rem;">'
-                    f'{esc(str(md.get("train", "")))} train · {esc(str(md.get("test", "")))} test '
+                    f'{esc(str(ds.get("train", md.get("train", ""))))} train · {esc(str(ds.get("test", md.get("test", ""))))} test '
                     f'(stratified 80/20, seed 42)</div>'
                     f'<div style="color:#94a3b8;font-size:0.85rem;margin-top:4px;">'
                     f'{esc(str(md.get("features", "")))} features (20 categorical · 1 numeric) · '
