@@ -23,7 +23,6 @@
     <a href="#-tech-stack">Tech Stack</a> ·
     <a href="#-getting-started">Getting Started</a> ·
     <a href="#-project-structure">Structure</a> ·
-    <a href="#-roadmap">Roadmap</a> ·
     <a href="#-author">Author</a>
   </p>
 </div>
@@ -172,8 +171,10 @@ python scripts/verify_predictions.py
 
 ## ◈ Project Structure
 
+The app shell sits in `app.py`, the model code in `modules/`, trained artifacts in `models/`, the survey data in `data/` and the training scripts in `scripts/`.
+
 <details>
-<summary>Show the file tree</summary>
+<summary>Open the folder map</summary>
 
 ```text
 neuro-screen/
@@ -201,25 +202,20 @@ neuro-screen/
 
 <img src="assets/divider.svg" alt="" width="100%">
 
-## ◈ Roadmap
-
-- [x] Hybrid CatBoost and ANN model with a shared inference path
-- [x] Form and chat assessments with per-prediction SHAP drivers
-- [x] Deployed demo on Streamlit Community Cloud
-- [ ] Longitudinal analysis of cognitive state over time (listed as future work in the thesis)
-- [ ] Wider and more varied data collection beyond Bangladeshi universities
-- [ ] Clinical validation before any real-world use
-
-<img src="assets/divider.svg" alt="" width="100%">
-
 ## ◈ Author
 
 <img align="right" src="assets/aiub_logo.png" alt="AIUB logo" width="72">
 
 Thesis project at American International University-Bangladesh (AIUB), Department of Computer Science, course CSC 4298, group G52. Team: Sajidur Rahman Sajid (lead developer), Khadija Akter, Md Iqramul Kabir and Shahadat Hossain Gazi.
 
-**Sajidur Rahman Sajid**, Full-Stack Developer and AI engineer from Dhaka.
+**Sajidur Rahman Sajid**: Full-Stack Developer and AI engineer from Dhaka.<br>
+BSc in CSE at American International University-Bangladesh (AIUB).
 
-[Portfolio](https://www.sajidur.me) · [LinkedIn](https://www.linkedin.com/in/sajidur-rahman-sajid/) · [GitHub](https://github.com/Saji-d) · [Email](mailto:sajidsajidurrahman99@gmail.com)
+<p>
+  <a href="https://www.sajidur.me"><img src="https://img.shields.io/badge/Portfolio-0B0E1A?style=flat-square&logo=googlechrome&logoColor=9B8CFA" alt="Portfolio"></a>
+  <a href="https://www.linkedin.com/in/sajidur-rahman-sajid/"><img src="https://img.shields.io/badge/LinkedIn-0B0E1A?style=flat-square&logo=linkedin&logoColor=8B7CF6" alt="LinkedIn"></a>
+  <a href="https://github.com/Saji-d"><img src="https://img.shields.io/badge/GitHub-0B0E1A?style=flat-square&logo=github&logoColor=EEF0FA" alt="GitHub"></a>
+  <a href="mailto:sajidsajidurrahman99@gmail.com"><img src="https://img.shields.io/badge/Email-0B0E1A?style=flat-square&logo=gmail&logoColor=9B8CFA" alt="Email"></a>
+</p>
 
 <sub>No open-source licence has been published for this repository. All rights reserved by the authors unless stated otherwise.</sub>
