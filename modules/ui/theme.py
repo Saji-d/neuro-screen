@@ -42,15 +42,22 @@ def callout(body: str, kind: str = "warn", icon: str = "⚠️") -> str:
 
 
 def card(icon: str, title: str, body: str, delay: int = 1) -> str:
-    return (f'<div class="card rise d{delay}"><div class="icon-chip">{icon}</div>'
+    return (f'<div class="card rv"><div class="icon-chip">{icon}</div>'
             f"<h4>{esc(title)}</h4><p>{esc(body)}</p></div>")
+
+
+def expand(icon: str, title: str, summary: str, detail: str, delay: int = 1, cls: str = "rv") -> str:
+    """Click-to-expand card (native <details>, works without JavaScript)."""
+    return (f'<details class="card {cls}"><summary><div class="icon-chip">{icon}</div>'
+            f"<h4>{esc(title)}</h4><p>{esc(summary)}</p><div class=\"hint\">Tap to read more</div></summary>"
+            f'<div class="more">{detail}</div></details>')
 
 
 def stat(value: str, label: str, suffix: str = "", delay: int = 1) -> str:
     num = value.replace(",", "")
     inner = (f'<span class="count" style="--v:{num}"></span>{esc(suffix)}'
-             if num.isdigit() else esc(value))
-    return (f'<div class="card stat rise d{delay}"><div class="num grad-text">{inner}</div>'
+             if num.isdigit() and "," not in value else esc(value))
+    return (f'<div class="card stat flat rise d{delay}"><div class="num grad-text">{inner}</div>'
             f'<div class="lab">{esc(label)}</div></div>')
 
 
