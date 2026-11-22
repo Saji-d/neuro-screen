@@ -1,0 +1,159 @@
+{
+  "task": "cognitive",
+  "label": "Cognitive symptoms",
+  "n_train": 1692,
+  "positive_rate": 0.37943262411347517,
+  "score_cutoff": 10.0,
+  "features": [
+    "What is your age?",
+    "What is your gender?",
+    "What is your University name?",
+    "Your current year of study?",
+    "How many cups of caffeine (tea/coffee/energy drinks) do you have daily?",
+    "How often do you use electronic devices (phone/laptop) in bed before sleep?",
+    "How often do you feel cognitive load?",
+    "How often do you feel stressed?",
+    "How often do you wake up in the middle of the night?",
+    "How many academic deadlines have you missed or delayed in the last month?",
+    "To what extent do you feel sleep deprivation is lowering your GPA?",
+    "How often does physical or mental fatigue prevent you from completing your daily goals?"
+  ],
+  "categorical": [
+    "What is your gender?",
+    "What is your University name?",
+    "Your current year of study?",
+    "How many cups of caffeine (tea/coffee/energy drinks) do you have daily?",
+    "How often do you use electronic devices (phone/laptop) in bed before sleep?",
+    "How often do you feel cognitive load?",
+    "How often do you feel stressed?",
+    "How often do you wake up in the middle of the night?",
+    "How many academic deadlines have you missed or delayed in the last month?",
+    "To what extent do you feel sleep deprivation is lowering your GPA?",
+    "How often does physical or mental fatigue prevent you from completing your daily goals?"
+  ],
+  "threshold": 0.5,
+  "options": {
+    "What is your gender?": [
+      "Female",
+      "Male"
+    ],
+    "What is your University name?": [
+      "UIU",
+      "Stamford University",
+      "BUP",
+      "BUET",
+      "University of Chittagong",
+      "Green University",
+      "AIUB",
+      "IUT",
+      "University of Asia Pacific (UAP)",
+      "North South University (NSU)",
+      "Sylhet Agricultural University",
+      "IIUC Chittagong",
+      "Independent University, Bangladesh (IUB)",
+      "University of Rajshahi",
+      "Jahangirnagar University",
+      "Jagannath University",
+      "Metropolitan University",
+      "DIU",
+      "Noakhali STU",
+      "SUST",
+      "Comilla University",
+      "AUST",
+      "East West University",
+      "BRAC University",
+      "Begum Rokeya University",
+      "MIST",
+      "University of Dhaka",
+      "Khulna University",
+      "BAU",
+      "Asian University for Women",
+      "Leading University"
+    ],
+    "Your current year of study?": [
+      "1st Year",
+      "2nd Year",
+      "3rd Year",
+      "4th Year",
+      "Graduated"
+    ],
+    "How many cups of caffeine (tea/coffee/energy drinks) do you have daily?": [
+      "1-2",
+      "5 or more",
+      "3-4"
+    ],
+    "How often do you use electronic devices (phone/laptop) in bed before sleep?": [
+      "Never",
+      "Sometimes",
+      "Always",
+      "Rarely"
+    ],
+    "How often do you feel cognitive load?": [
+      "Never",
+      "Rarely",
+      "Sometimes",
+      "Always"
+    ],
+    "How often do you feel stressed?": [
+      "Never",
+      "Rarely",
+      "Always",
+      "Sometimes",
+      "Often"
+    ],
+    "How often do you wake up in the middle of the night?": [
+      "Sometimes",
+      "Never",
+      "Always"
+    ],
+    "How many academic deadlines have you missed or delayed in the last month?": [
+      "1-2",
+      "5 or more",
+      "3-4"
+    ],
+    "To what extent do you feel sleep deprivation is lowering your GPA?": [
+      "Moderate impact",
+      "No impact",
+      "Severe impact",
+      "High impact",
+      "Minor impact"
+    ],
+    "How often does physical or mental fatigue prevent you from completing your daily goals?": [
+      "Rarely",
+      "Sometimes",
+      "Never",
+      "Often",
+      "Always"
+    ]
+  },
+  "age_range": [
+    18,
+    28
+  ],
+  "age_median": 24.0,
+  "feature_importance": {
+    "What is your University name?": 16.678,
+    "To what extent do you feel sleep deprivation is lowering your GPA?": 13.279,
+    "How often does physical or mental fatigue prevent you from completing your daily goals?": 9.469,
+    "How many academic deadlines have you missed or delayed in the last month?": 8.798,
+    "How often do you use electronic devices (phone/laptop) in bed before sleep?": 8.745,
+    "How often do you feel stressed?": 8.286,
+    "How many cups of caffeine (tea/coffee/energy drinks) do you have daily?": 8.138,
+    "Your current year of study?": 8.093,
+    "How often do you feel cognitive load?": 5.914,
+    "How often do you wake up in the middle of the night?": 5.703,
+    "What is your age?": 3.712,
+    "What is your gender?": 3.185
+  },
+  "trained_at": "2026-11-23T02:17:28",
+  "versions": {
+    "catboost": "1.2.10",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "sklearn": "1.9.1",
+    "torch": "2.15.0+cpu",
+    "pandas": "3.1.1",
+    "numpy": "2.5.5"
+  },
+  "python": "3.12.16"
+}
