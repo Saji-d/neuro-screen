@@ -265,3 +265,9 @@ details.card[open] .hint{display:none}
 [data-testid="stTopNavLink"]:hover{color:#fff!important;background:var(--panel)!important}
 [data-testid="stTopNavLink"][aria-current="page"]{color:#fff!important;background:rgba(139,124,246,.2)!important;box-shadow:inset 0 0 0 1px rgba(139,124,246,.5)}
 [data-testid="stHeaderActionElements"],.card h4 a{display:none!important}
+
+/* center the top navigation */
+[data-testid="stHeader"] > div:first-child{width:100%;}
+[data-testid="stHeader"] nav,[data-testid="stHeader"] [data-testid="stTopNavLinkContainer"]{justify-content:center!important;}
+[data-testid="stHeader"] nav{flex:1 1 auto;width:100%;}
+[data-testid="stHeader"] [data-testid="stTopNavLinkContainer"]{margin:0 auto;}
