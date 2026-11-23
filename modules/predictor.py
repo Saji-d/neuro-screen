@@ -7,7 +7,7 @@ Answers (12 predictors) -> two trained stacks -> a ``Prediction``. If the
 trained artifacts are missing, :func:`models_ready` is False and the UI says
 so; nothing is ever fabricated.
 
-Interpretation note. The notebook's honest cross-validation shows the stacks
+Interpretation note. The notebook's cross-validation shows the stacks
 barely beat the majority-class baseline (AUC near 0.5). The raw probability
 therefore hovers near the cohort base rate, so the result is reported
 *relative to that base rate* rather than as a verdict.

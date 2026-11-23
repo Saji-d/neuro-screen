@@ -4,8 +4,7 @@ config.py
 Central application configuration for Neuro-Screen (paths + brand).
 
 Holds filesystem paths, brand identity (as published in the thesis report),
-risk thresholds, and the reported evaluation results from the conference
-paper. Every other module imports constants from here so that values that
+risk thresholds, and the evaluation settings. Every other module imports constants from here so that values that
 must stay consistent (thresholds, column names, model paths) live in one
 place only.
 """

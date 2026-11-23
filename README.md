@@ -18,7 +18,7 @@ With the symptom and sleep-rule questions **removed from the predictors**, the s
 | Cognitive symptoms (n=1,692) | 0.621 | 0.621 | 0.48 |
 | Sleep risk (n=2,236) | 0.757 | 0.757 | 0.49 |
 
-An earlier version of this project reported ~95% accuracy; that came from using the symptom questions as inputs (label leakage). Full per-model tables are in the app's **Reliability** page and `models/eval_metrics.json`.
+Symptom and sleep-rule items are excluded from the predictors by design, so the label cannot leak into the model. Full per-model tables are in the app's **Reliability** page and `models/eval_metrics.json`.
 
 ## Method
 

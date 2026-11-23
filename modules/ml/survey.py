@@ -6,8 +6,8 @@ Survey loading, scoring and target definition for Neuro-Screen.
 Mirrors ``thesis-updated-code.ipynb`` (sections 1-3):
 
 * The seven cognitive-symptom items are scored (0-17) and kept OUT of the
-  predictors, as are the two sleep-rule items. The previous app used them as
-  inputs, which leaked the label.
+  predictors, as are the two sleep-rule items, so the label cannot leak into
+  the model.
 * ``sleep`` = 1 when the respondent sleeps <6 h or rates sleep quality <= 3.
 * Two tasks: "Sleep risk" (all respondents) and "Cognitive symptoms"
   (respondents meeting the sleep-risk rule; label = score >= the 72nd

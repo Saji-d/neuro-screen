@@ -15,9 +15,8 @@ FAQ = [
      "database or sent anywhere else."),
     ("Why are results always close to the average?",
      "Because the twelve questions carry very little information about the symptom score. When the symptom "
-     "questions themselves were used as inputs, accuracy looked like 95%, but that was the label leaking "
-     "into the model. Without the leak, cross-validated accuracy matches simply guessing the most common "
-     "answer. The Reliability page shows the exact numbers."),
+     "questions are excluded from the inputs, so the model cannot read the answer off them. Cross-validated "
+     "accuracy matches simply guessing the most common answer. The Reliability page shows the exact numbers."),
     ("What is the sleep-risk rule?",
      "In the survey, a respondent meets the rule if they sleep under 6 hours a night or rate their sleep "
      "quality 3 out of 5 or worse. About three quarters of respondents meet it."),
@@ -69,7 +68,7 @@ def render() -> None:
         <h1 class="rise d1">Screen for <span class="grad-text">cognitive strain</span> from sleep and student life.</h1>
         <p class="lead rise d2">Twelve quick questions go through a four-model stack (CatBoost, XGBoost,
         LightGBM and a neural network) trained on {n:,} university students. You get a result, the
-        reasons behind it and an honest read on how far to trust it.</p>
+        reasons behind it and a clear read on how far to trust it.</p>
       </div>
       <div class="rise d3">{theme.brain_svg()}</div>
     </div>
@@ -122,9 +121,8 @@ def render() -> None:
 
     theme.section("Be clear-eyed about it")
     md(theme.callout(
-        "<b>Honest note.</b> An earlier version of this project reported ~95% accuracy because the symptom "
-        "questions were fed in as inputs. With that leak removed, cross-validated results sit close to the "
-        "majority-class baseline. The <b>Reliability</b> page shows those numbers openly. Treat the output as "
+        "<b>Reading the results.</b> The symptom questions are kept out of the inputs, so cross-validated "
+        "results sit close to the majority-class baseline. The <b>Reliability</b> page shows those numbers openly. Treat the output as "
         "a conversation starter, not a verdict.", "info", "🔬"))
 
     theme.section("Questions people ask")

@@ -1,4 +1,4 @@
-"""Reliability page: honest cross-validated metrics, ROC, distributions, importance."""
+"""Reliability page: cross-validated metrics, ROC, distributions, importance."""
 
 from __future__ import annotations
 
@@ -62,7 +62,7 @@ def render() -> None:
             "<b>What this means.</b> The stack does not beat simply predicting the most common class, and "
             "its AUC is close to 0.5. With the symptom questions removed from the inputs, these twelve "
             "lifestyle answers do not separate students with higher and lower symptom scores in this "
-            "dataset. The earlier ~95% figure came from a label leak and should not be quoted.", "warn", "🔬"))
+            "dataset.", "warn", "🔬"))
 
     for key, title in (("cognitive", "Cognitive-symptom screen (primary)"), ("sleep_risk", "Sleep-risk screen (secondary)")):
         t = tasks.get(key)
