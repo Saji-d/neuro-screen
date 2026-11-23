@@ -12,7 +12,7 @@ html,body,[class*="stApp"]{font-family:'Inter',system-ui,sans-serif;}
 .stApp{background:var(--ink);color:var(--text);}
 h1,h2,h3,.ns-display{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-.02em;}
 header[data-testid="stHeader"]{background:transparent;}
-#MainMenu,footer,[data-testid="stDecoration"],[data-testid="stToolbarActions"],.stDeployButton,[data-testid="stMainMenu"]{display:none!important;}
+#MainMenu,footer,[data-testid="stDecoration"],[data-testid="stToolbarActions"],.stDeployButton,[data-testid="stAppDeployButton"],[data-testid="stMainMenu"]{display:none!important;}
 :root{--pad:clamp(1rem,5vw,5rem);--maxw:1120px}
 @media(min-width:1700px){:root{--maxw:1240px}}
 .block-container{max-width:var(--maxw)!important;padding-left:var(--pad)!important;padding-right:var(--pad)!important;padding-top:5.2rem;padding-bottom:5rem;}
@@ -276,3 +276,12 @@ details.card[open] .hint{display:none}
 [data-testid="stHeader"]{position:relative;}
 [data-testid="stTopNav"]{position:absolute!important;left:0;right:0;width:100%!important;justify-content:center!important;pointer-events:none;}
 [data-testid="stTopNav"] a{pointer-events:auto;}
+
+/* phones and small tablets: Streamlit moves navigation into the sidebar.
+   Make it an overlay drawer with a visible Menu button so content never squeezes. */
+@media (max-width:820px){
+  [data-testid="stSidebar"]{position:fixed!important;top:0!important;left:0!important;height:100dvh!important;z-index:1000!important;box-shadow:8px 0 40px rgba(0,0,0,.5);}
+  [data-testid="stExpandSidebarButton"]{width:auto!important;padding:.35rem .8rem!important;border-radius:999px!important;
+    background:var(--panel)!important;border:1px solid var(--line)!important;margin-left:.25rem;}
+  [data-testid="stExpandSidebarButton"]::after{content:"Menu";color:#e8ecf8;font-size:.85rem;margin-left:.45rem;}
+}
