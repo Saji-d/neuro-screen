@@ -45,4 +45,18 @@ models/                 trained artifacts + eval_metrics.json
 notebooks/              reference analysis
 ```
 
-**Authors:** Sajidur Rahman Sajid, Khadija Akter, Md Iqramul Kabir, Shahadat Hossain Gazi · AIUB, Group G52
+<img src="assets/divider.svg" alt="" width="100%">
+
+## ◈ Author
+
+**Sajidur Rahman Sajid**: Full-Stack Developer and AI engineer from Dhaka.<br>
+BSc in CSE at American International University-Bangladesh (AIUB).
+
+The survey dataset and the reference analysis (`notebooks/thesis-updated-code.ipynb`) come from a group project at AIUB. This app and repository are my own work.
+
+<p>
+  <a href="https://www.sajidur.me"><img src="https://img.shields.io/badge/Portfolio-0B0E1A?style=flat-square&logo=googlechrome&logoColor=9B8CFA" alt="Portfolio"></a>
+  <a href="https://www.linkedin.com/in/sajidur-rahman-sajid/"><img src="https://img.shields.io/badge/LinkedIn-0B0E1A?style=flat-square&logo=linkedin&logoColor=8B7CF6" alt="LinkedIn"></a>
+  <a href="https://github.com/Saji-d"><img src="https://img.shields.io/badge/GitHub-0B0E1A?style=flat-square&logo=github&logoColor=EEF0FA" alt="GitHub"></a>
+  <a href="mailto:sajidsajidurrahman99@gmail.com"><img src="https://img.shields.io/badge/Email-0B0E1A?style=flat-square&logo=gmail&logoColor=9B8CFA" alt="Email"></a>
+</p>

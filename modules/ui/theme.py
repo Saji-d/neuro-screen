@@ -118,4 +118,4 @@ def disclaimer() -> str:
 
 
 def footer() -> None:
-    md('<div class="foot">Neuro-Screen · AIUB Thesis Group G52 · Research prototype, not for clinical use</div>')
+    md('<div class="foot">Neuro-Screen · Sajidur Rahman Sajid · Research prototype, not for clinical use</div>')

@@ -40,25 +40,14 @@ DATASET_CANDIDATES = [
 ]
 
 # ------------------------------------------------------------------
-# Brand identity (from the thesis report cover + approval page)
+# Brand identity
 # ------------------------------------------------------------------
 BRAND = {
     "name": "Neuro-Screen",
     "subtitle": ("Hybrid Ensemble Framework for Early Detection of Cognitive "
                  "Impairment in Insomniac University Students"),
+    "author": "Sajidur Rahman Sajid",
     "institution": "American International University-Bangladesh (AIUB)",
-    "faculty": "Faculty of Science and Technology",
-    "department": "Department of Computer Science",
-    "course": "CSC 4298 — Thesis/Project",
-    "semester": "Spring 2025-2026",
-    "submission_date": "30 July, 2026",
-    "thesis_group": "G52",
-    "authors": [
-        {"name": "Sajidur Rahman Sajid", "id": "22-49076-3"},
-        {"name": "Khadija Akter", "id": "22-48295-3"},
-        {"name": "Md Iqramul Kabir", "id": "22-46165-1"},
-        {"name": "Shahadat Hossain Gazi", "id": "22-48095-2"},
-    ],
 }
 
 # ------------------------------------------------------------------

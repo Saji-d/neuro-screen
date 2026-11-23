@@ -24,8 +24,8 @@ FAQ = [
      "No. The label is built from seven self-reported symptom questions, not a clinical test, and the model "
      "has not been clinically validated. Use it to start a conversation, not to draw conclusions."),
     ("Who built it?",
-     "A thesis project by Group G52 at the American International University-Bangladesh (AIUB), "
-     "Department of Computer Science."),
+     "Sajidur Rahman Sajid, a CSE student at the American International University-Bangladesh (AIUB). "
+     "The survey data comes from a group thesis project there."),
 ]
 
 
@@ -64,7 +64,7 @@ def render() -> None:
     md(f"""
     <div class="hero">
       <div>
-        <div class="badge rise"><i></i>Research prototype · AIUB thesis G52</div>
+        <div class="badge rise"><i></i>Research prototype · AIUB</div>
         <h1 class="rise d1">Screen for <span class="grad-text">cognitive strain</span> from sleep and student life.</h1>
         <p class="lead rise d2">Twelve quick questions go through a four-model stack (CatBoost, XGBoost,
         LightGBM and a neural network) trained on {n:,} university students. You get a result, the
