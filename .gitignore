@@ -40,3 +40,6 @@ Thumbs.db
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
+
+# Private write-up for the paper
+docs/HOW_IT_WORKS.md
